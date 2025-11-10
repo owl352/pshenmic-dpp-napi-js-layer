@@ -1,0 +1,28 @@
+import {DynamicValue, EnumLike} from "./types";
+import {UINT16MAX, UINT32MAX, UINT8MAX} from "./constants";
+
+export function valueToDynamicEnum (value: EnumLike): DynamicValue {
+  if(typeof value === 'string') {
+    return {
+      type: 'Text',
+      field0: value as string,
+    }
+  }else if(typeof value === 'number') {
+    let numType:  "Uint8" | "Uint16" | "Uint32"
+
+    if(value<=UINT8MAX) {
+      numType = 'Uint8'
+    }else if(value<=UINT16MAX) {
+      numType = 'Uint16'
+    }else {
+      numType = 'Uint32'
+    }
+
+    return {
+      type: numType,
+      field0: value
+    }
+  }else{
+    throw new Error(`${value} is not a number or string`)
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pshenmic-dpp-js-layer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "pshenmic-dpp-napi": "github:owl352/pshenmic-dpp-napi#8f149f110be9ede38c406cf68b7de08f456cef58",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
