@@ -1,4 +1,5 @@
-import {DashPlatformProtocol, DynamicValue, IdentifierLike, RawIdentifier} from "../types";
+import {DashPlatformProtocol, DynamicValue, IdentifierLike, RawIdentifier, RawIdentityPublicKey} from "../types";
+
 let dpp: DashPlatformProtocol;
 
 export function setDpp(_dpp: DashPlatformProtocol) {
@@ -6,43 +7,54 @@ export function setDpp(_dpp: DashPlatformProtocol) {
 }
 
 export class IdentifierWASM {
-  rawIdentifier: RawIdentifier
+  #rawIdentifier: RawIdentifier
 
   constructor(raw_id: IdentifierLike | IdentifierWASM) {
-    if(raw_id instanceof IdentifierWASM) {
+    if (raw_id instanceof IdentifierWASM) {
       return raw_id;
-    }else if(typeof raw_id === 'string') {
+    } else if (typeof raw_id === 'string') {
       const id: DynamicValue = {
         type: "Text",
         field0: raw_id,
       }
-      
-      this.rawIdentifier = new dpp.IdentifierWASM(id);
-    }else if(raw_id instanceof Uint8Array) {
+
+      this.#rawIdentifier = new dpp.IdentifierWASM(id);
+    } else if (raw_id instanceof Uint8Array) {
       const id: DynamicValue = {
         type: "Bytes",
         field0: raw_id
       }
 
-      this.rawIdentifier = new dpp.IdentifierWASM(id);
-    }else {
+      this.#rawIdentifier = new dpp.IdentifierWASM(id);
+    } else {
       throw new Error("Invalid raw ID");
     }
   }
 
   base58(): string {
-    return this.rawIdentifier.base58();
+    return this.#rawIdentifier.base58();
   }
 
   base64(): string {
-    return this.rawIdentifier.base64();
+    return this.#rawIdentifier.base64();
   }
 
   hex(): string {
-    return this.rawIdentifier.hex();
+    return this.#rawIdentifier.hex();
   }
 
   bytes(): Uint8Array {
-    return this.rawIdentifier.bytes()
+    return this.#rawIdentifier.bytes()
+  }
+
+  static createFromRawInstance(rawInstance: RawIdentifier) {
+    const instance: IdentifierWASM = Object.create(this.prototype)
+    instance.#rawIdentifier = rawInstance
+
+    return instance
+  }
+
+  getRawInstance(): RawIdentifier {
+    return this.#rawIdentifier
   }
 }

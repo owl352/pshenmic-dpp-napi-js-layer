@@ -1,4 +1,10 @@
-import {DashPlatformProtocol, RawIdentity, IdentifierLike, EnumLike, DynamicValue} from "../types";
+import {
+  DashPlatformProtocol,
+  RawIdentity,
+  IdentifierLike,
+  EnumLike,
+  DynamicValue,
+} from "../types";
 import {IdentifierWASM} from "./Identifier";
 import {IdentityPublicKeyWASM} from "./IdentityPublicKey";
 import {valueToDynamicEnum} from "../helpers";
@@ -10,74 +16,66 @@ export function setDpp(_dpp: DashPlatformProtocol) {
 }
 
 export class IdentityWASM {
-  rawIdentity: RawIdentity
+  #rawIdentity: RawIdentity
 
   constructor(rawId: IdentifierLike | IdentifierWASM, platformVersion: EnumLike) {
     const id = new IdentifierWASM(rawId);
 
     let dynamicEnumValue: DynamicValue = valueToDynamicEnum(platformVersion)
 
-    this.rawIdentity = new dpp.IdentityWASM(id, dynamicEnumValue)
+    this.#rawIdentity = new dpp.IdentityWASM(id, dynamicEnumValue)
   }
 
   set id(rawId: IdentifierLike | IdentifierWASM) {
-    this.rawIdentity.id = new IdentifierWASM(rawId);
+    this.#rawIdentity.id = new IdentifierWASM(rawId);
   }
 
   set balance(balance: BigInt) {
-    this.rawIdentity.balance = {value: balance.toString()}
+    this.#rawIdentity.balance = {value: balance.toString()}
   }
 
   set revision(revision: BigInt) {
-    this.rawIdentity.revision = {value: revision.toString()}
+    this.#rawIdentity.revision = {value: revision.toString()}
   }
 
   get id(): IdentifierWASM {
-    return <IdentifierWASM>this.rawIdentity.id
+    return <IdentifierWASM>this.#rawIdentity.id
   }
 
   get balance(): BigInt {
-    return BigInt(this.rawIdentity.balance.value)
+    return BigInt(this.#rawIdentity.balance.value)
   }
 
   get revision(): BigInt {
-    return BigInt(this.rawIdentity.revision.value)
+    return BigInt(this.#rawIdentity.revision.value)
   }
 
   addPublicKey(publicKey: IdentityPublicKeyWASM): void {
-    this.rawIdentity.addPublicKey(publicKey.rawIdentityPublicKey)
+    this.#rawIdentity.addPublicKey(publicKey.getRawInstance())
   }
 
   getPublicKeyById(keyId: number): IdentityPublicKeyWASM | undefined {
-    const rawKeyInstance = this.rawIdentity.getPublicKeyById(keyId)
+    const rawKeyInstance = this.#rawIdentity.getPublicKeyById(keyId)
 
     if (rawKeyInstance) {
-      const instance: IdentityPublicKeyWASM = Object.create(IdentityPublicKeyWASM.prototype);
 
-      instance.rawIdentityPublicKey = rawKeyInstance
-
-      return instance
+      return IdentityPublicKeyWASM.createFromRawInstance(rawKeyInstance)
     }
 
     return undefined
   }
 
   getPublicKeys(): Array<IdentityPublicKeyWASM> {
-    const rawKeysArr = this.rawIdentity.getPublicKeys()
+    const rawKeysArr = this.#rawIdentity.getPublicKeys()
 
-    return rawKeysArr.map(key => {
-      const instance: IdentityPublicKeyWASM = Object.create(IdentityPublicKeyWASM.prototype)
-      instance.rawIdentityPublicKey = key
-
-      return instance
-    })
+    return rawKeysArr.map(IdentityPublicKeyWASM.createFromRawInstance)
   }
 
   static fromHex(hex: string): IdentityWASM {
     const rawInstance = dpp.IdentityWASM.fromHex(hex)
 
     const instance: IdentityWASM = Object.create(this.prototype)
-    instance.rawIdentity = rawInstance
+    instance.#rawIdentity = rawInstance
 
     return instance
   }
@@ -86,7 +84,7 @@ export class IdentityWASM {
     const rawInstance = dpp.IdentityWASM.fromBase64(base64)
 
     const instance: IdentityWASM = Object.create(this.prototype)
-    instance.rawIdentity = rawInstance
+    instance.#rawIdentity = rawInstance
 
     return instance
   }
@@ -95,20 +93,31 @@ export class IdentityWASM {
     const rawInstance = dpp.IdentityWASM.fromBytes(bytes)
 
     const instance: IdentityWASM = Object.create(this.prototype)
-    instance.rawIdentity = rawInstance
+    instance.#rawIdentity = rawInstance
 
     return instance
   }
 
   bytes(): Uint8Array {
-    return this.rawIdentity.bytes()
+    return this.#rawIdentity.bytes()
   }
 
   hex(): string {
-    return this.rawIdentity.hex()
+    return this.#rawIdentity.hex()
   }
 
   base64(): string {
-    return this.rawIdentity.base64()
+    return this.#rawIdentity.base64()
+  }
+
+  static createFromRawInstance(rawInstance: RawIdentity) {
+    const instance: IdentityWASM = Object.create(this.prototype)
+    instance.#rawIdentity = rawInstance
+
+    return instance
+  }
+
+  getRawInstance(): RawIdentity {
+    return this.#rawIdentity
   }
 }
