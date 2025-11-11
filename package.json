@@ -5,7 +5,7 @@
   "license": "MIT",
   "exports": {
     ".": "./dist/index.js",
-    "./react-native": "./dist/react-native"
+    "./react-native": "./dist/react-native.js"
   },
   "dependencies": {
     "pshenmic-dpp-napi": "github:owl352/pshenmic-dpp-napi#e8955926dca7c443320ab1fd4954610da38da379",
