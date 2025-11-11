@@ -10,4 +10,4 @@ export type DynamicValue = protocol.DynamicValue
 export type IdentifierLike = string | Uint8Array | RawIdentifier
 export type EnumLike = string | number;
 
-export {PlatformVersionWASM, KeyType, NetworkWASM, PurposeWASM, SecurityLevelWASM} from "pshenmic-dpp-napi"
+export {PlatformVersionWASM, KeyType, NetworkWASM, Purpose, SecurityLevel} from "pshenmic-dpp-napi"

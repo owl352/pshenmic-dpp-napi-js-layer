@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "pshenmic-dpp-napi": "github:owl352/pshenmic-dpp-napi#8f149f110be9ede38c406cf68b7de08f456cef58",
+    "pshenmic-dpp-napi": "github:owl352/pshenmic-dpp-napi#e8955926dca7c443320ab1fd4954610da38da379",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }

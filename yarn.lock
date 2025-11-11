@@ -205,9 +205,9 @@ get-tsconfig@^4.7.5:
   dependencies:
     resolve-pkg-maps "^1.0.0"
 
-"pshenmic-dpp-napi@github:owl352/pshenmic-dpp-napi#8f149f110be9ede38c406cf68b7de08f456cef58":
+"pshenmic-dpp-napi@github:owl352/pshenmic-dpp-napi#e8955926dca7c443320ab1fd4954610da38da379":
   version "0.1.0"
-  resolved "https://codeload.github.com/owl352/pshenmic-dpp-napi/tar.gz/8f149f110be9ede38c406cf68b7de08f456cef58"
+  resolved "https://codeload.github.com/owl352/pshenmic-dpp-napi/tar.gz/e8955926dca7c443320ab1fd4954610da38da379"
   dependencies:
     "@emnapi/core" "^1.7.0"
     "@emnapi/runtime" "^1.7.0"

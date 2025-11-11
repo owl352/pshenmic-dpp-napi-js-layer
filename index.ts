@@ -4,4 +4,4 @@ import * as protocol from 'pshenmic-dpp-napi';
 
 const dpp: DPP = new DPP(protocol);
 
-export default dpp
+export const {IdentifierWASM, KeyType, NetworkWASM, PlatformVersionWASM, Purpose, SecurityLevel, IdentityPublicKeyWASM, IdentityWASM} = dpp
