@@ -1,7 +1,7 @@
 import { DashPlatformProtocol, EnumLike, Purpose, RawIdentityPublicKey, SecurityLevel, KeyType } from "../types";
 export declare function setDpp(_dpp: DashPlatformProtocol): void;
 export declare class IdentityPublicKeyWASM {
-    #private;
+    _rawIdentityPublicKey: RawIdentityPublicKey;
     constructor(id: number, purpose: EnumLike, securityLevel: EnumLike, keyType: EnumLike, readOnly: boolean, binaryData: string, disabledAt?: bigint);
     get keyId(): number;
     get purpose(): string;

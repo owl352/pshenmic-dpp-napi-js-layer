@@ -16,46 +16,46 @@ export function setDpp(_dpp: DashPlatformProtocol) {
 }
 
 export class IdentityWASM {
-  #rawIdentity: RawIdentity
+  _rawIdentity: RawIdentity
 
   constructor(rawId: IdentifierLike | IdentifierWASM, platformVersion: EnumLike) {
     const id = new IdentifierWASM(rawId);
 
     let dynamicEnumValue: DynamicValue = valueToDynamicEnum(platformVersion)
 
-    this.#rawIdentity = new dpp.IdentityWASM(id, dynamicEnumValue)
+    this._rawIdentity = new dpp.IdentityWASM(id, dynamicEnumValue)
   }
 
   set id(rawId: IdentifierLike | IdentifierWASM) {
-    this.#rawIdentity.id = new IdentifierWASM(rawId);
+    this._rawIdentity.id = new IdentifierWASM(rawId);
   }
 
   set balance(balance: BigInt) {
-    this.#rawIdentity.balance = {value: balance.toString()}
+    this._rawIdentity.balance = {value: balance.toString()}
   }
 
   set revision(revision: BigInt) {
-    this.#rawIdentity.revision = {value: revision.toString()}
+    this._rawIdentity.revision = {value: revision.toString()}
   }
 
   get id(): IdentifierWASM {
-    return <IdentifierWASM>this.#rawIdentity.id
+    return <IdentifierWASM>this._rawIdentity.id
   }
 
   get balance(): BigInt {
-    return BigInt(this.#rawIdentity.balance.value)
+    return BigInt(this._rawIdentity.balance.value)
   }
 
   get revision(): BigInt {
-    return BigInt(this.#rawIdentity.revision.value)
+    return BigInt(this._rawIdentity.revision.value)
   }
 
   addPublicKey(publicKey: IdentityPublicKeyWASM): void {
-    this.#rawIdentity.addPublicKey(publicKey.getRawInstance())
+    this._rawIdentity.addPublicKey(publicKey.getRawInstance())
   }
 
   getPublicKeyById(keyId: number): IdentityPublicKeyWASM | undefined {
-    const rawKeyInstance = this.#rawIdentity.getPublicKeyById(keyId)
+    const rawKeyInstance = this._rawIdentity.getPublicKeyById(keyId)
 
     if (rawKeyInstance) {
 
@@ -66,7 +66,7 @@ export class IdentityWASM {
   }
 
   getPublicKeys(): Array<IdentityPublicKeyWASM> {
-    const rawKeysArr = this.#rawIdentity.getPublicKeys()
+    const rawKeysArr = this._rawIdentity.getPublicKeys()
 
     return rawKeysArr.map(IdentityPublicKeyWASM.createFromRawInstance)
   }
@@ -74,50 +74,41 @@ export class IdentityWASM {
   static fromHex(hex: string): IdentityWASM {
     const rawInstance = dpp.IdentityWASM.fromHex(hex)
 
-    const instance: IdentityWASM = Object.create(this.prototype)
-    instance.#rawIdentity = rawInstance
-
-    return instance
+    return this.createFromRawInstance(rawInstance)
   }
 
   static fromBase64(base64: string): IdentityWASM {
     const rawInstance = dpp.IdentityWASM.fromBase64(base64)
 
-    const instance: IdentityWASM = Object.create(this.prototype)
-    instance.#rawIdentity = rawInstance
-
-    return instance
+    return this.createFromRawInstance(rawInstance)
   }
 
   static fromBytes(bytes: Uint8Array): IdentityWASM {
     const rawInstance = dpp.IdentityWASM.fromBytes(bytes)
 
-    const instance: IdentityWASM = Object.create(this.prototype)
-    instance.#rawIdentity = rawInstance
-
-    return instance
+    return this.createFromRawInstance(rawInstance)
   }
 
   bytes(): Uint8Array {
-    return this.#rawIdentity.bytes()
+    return this._rawIdentity.bytes()
   }
 
   hex(): string {
-    return this.#rawIdentity.hex()
+    return this._rawIdentity.hex()
   }
 
   base64(): string {
-    return this.#rawIdentity.base64()
+    return this._rawIdentity.base64()
   }
 
   static createFromRawInstance(rawInstance: RawIdentity) {
     const instance: IdentityWASM = Object.create(this.prototype)
-    instance.#rawIdentity = rawInstance
+    instance._rawIdentity = rawInstance
 
     return instance
   }
 
   getRawInstance(): RawIdentity {
-    return this.#rawIdentity
+    return this._rawIdentity
   }
 }

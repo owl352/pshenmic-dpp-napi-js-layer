@@ -3,7 +3,7 @@ import { IdentifierWASM } from "./Identifier";
 import { IdentityPublicKeyWASM } from "./IdentityPublicKey";
 export declare function setDpp(_dpp: DashPlatformProtocol): void;
 export declare class IdentityWASM {
-    #private;
+    _rawIdentity: RawIdentity;
     constructor(rawId: IdentifierLike | IdentifierWASM, platformVersion: EnumLike);
     set id(rawId: IdentifierLike | IdentifierWASM);
     set balance(balance: BigInt);

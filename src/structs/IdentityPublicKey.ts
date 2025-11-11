@@ -8,10 +8,10 @@ export function setDpp(_dpp: DashPlatformProtocol) {
 }
 
 export class IdentityPublicKeyWASM {
-  #rawIdentityPublicKey: RawIdentityPublicKey;
+  _rawIdentityPublicKey : RawIdentityPublicKey;
 
   constructor(id: number, purpose: EnumLike, securityLevel: EnumLike, keyType: EnumLike, readOnly: boolean, binaryData: string, disabledAt?: bigint) {
-    this.#rawIdentityPublicKey = new dpp.IdentityPublicKeyWASM(
+    this._rawIdentityPublicKey  = new dpp.IdentityPublicKeyWASM(
       id,
       valueToDynamicEnum(purpose),
       valueToDynamicEnum(securityLevel),
@@ -23,109 +23,109 @@ export class IdentityPublicKeyWASM {
   }
 
   get keyId(): number {
-    return this.#rawIdentityPublicKey.keyId
+    return this._rawIdentityPublicKey .keyId
   }
 
   get purpose(): string {
-    return this.#rawIdentityPublicKey.purpose
+    return this._rawIdentityPublicKey .purpose
   }
 
   get purposeNumber(): Purpose {
-    return this.#rawIdentityPublicKey.purposeNumber
+    return this._rawIdentityPublicKey .purposeNumber
   }
 
   get securityLevel(): string {
-    return this.#rawIdentityPublicKey.securityLevel
+    return this._rawIdentityPublicKey .securityLevel
   }
 
   get securityLevelNumber(): SecurityLevel {
-    return this.#rawIdentityPublicKey.securityLevelNumber
+    return this._rawIdentityPublicKey .securityLevelNumber
   }
 
   get keyType(): string {
-    return this.#rawIdentityPublicKey.keyType
+    return this._rawIdentityPublicKey .keyType
   }
 
   get keyTypeNumber(): KeyType {
-    return this.#rawIdentityPublicKey.keyTypeNumber
+    return this._rawIdentityPublicKey .keyTypeNumber
   }
 
   get readOnly(): boolean {
-    return this.#rawIdentityPublicKey.readOnly
+    return this._rawIdentityPublicKey .readOnly
   }
 
   get data(): string {
-    return this.#rawIdentityPublicKey.data
+    return this._rawIdentityPublicKey .data
   }
 
   get disabledAt(): BigInt | undefined {
-    const timestamp = this.#rawIdentityPublicKey.disabledAt
+    const timestamp = this._rawIdentityPublicKey .disabledAt
 
     return timestamp ? BigInt(timestamp.value) : undefined
   }
 
   set keyId(keyId: number) {
-    this.#rawIdentityPublicKey.keyId = keyId
+    this._rawIdentityPublicKey .keyId = keyId
   }
 
   set purpose(purpose: EnumLike) {
-    this.#rawIdentityPublicKey.purpose = valueToDynamicEnum(purpose)
+    this._rawIdentityPublicKey .purpose = valueToDynamicEnum(purpose)
   }
 
   set purposeNumber(purpose: EnumLike) {
-    this.#rawIdentityPublicKey.purposeNumber = valueToDynamicEnum(purpose)
+    this._rawIdentityPublicKey .purposeNumber = valueToDynamicEnum(purpose)
   }
 
   set securityLevel(securityLevel: EnumLike) {
-    this.#rawIdentityPublicKey.securityLevel = valueToDynamicEnum(securityLevel)
+    this._rawIdentityPublicKey .securityLevel = valueToDynamicEnum(securityLevel)
   }
 
   set securityLevelNumber(securityLevel: EnumLike) {
-    this.#rawIdentityPublicKey.securityLevelNumber = valueToDynamicEnum(securityLevel)
+    this._rawIdentityPublicKey .securityLevelNumber = valueToDynamicEnum(securityLevel)
   }
 
   set keyType(keyType: EnumLike) {
-    this.#rawIdentityPublicKey.keyType = valueToDynamicEnum(keyType)
+    this._rawIdentityPublicKey .keyType = valueToDynamicEnum(keyType)
   }
 
   set keyTypeNumber(keyType: EnumLike) {
-    this.#rawIdentityPublicKey.keyTypeNumber = valueToDynamicEnum(keyType)
+    this._rawIdentityPublicKey .keyTypeNumber = valueToDynamicEnum(keyType)
   }
 
   set readOnly(readOnly: boolean) {
-    this.#rawIdentityPublicKey.readOnly = readOnly
+    this._rawIdentityPublicKey .readOnly = readOnly
   }
 
   set data(binaryData: string) {
-    this.#rawIdentityPublicKey.data = binaryData
+    this._rawIdentityPublicKey .data = binaryData
   }
 
   set disabledAt(disabledAt: string) {
-    this.#rawIdentityPublicKey.disabledAt = {value: disabledAt}
+    this._rawIdentityPublicKey .disabledAt = {value: disabledAt}
   }
 
   removeDisabledAt(): void {
-    this.#rawIdentityPublicKey.removeDisabledAt()
+    this._rawIdentityPublicKey .removeDisabledAt()
   }
 
   getPublicKeyHash(): string {
-    return this.#rawIdentityPublicKey.getPublicKeyHash()
+    return this._rawIdentityPublicKey .getPublicKeyHash()
   }
 
   isMaster(): boolean {
-    return this.#rawIdentityPublicKey.isMaster()
+    return this._rawIdentityPublicKey .isMaster()
   }
 
   bytes(): Uint8Array {
-    return this.#rawIdentityPublicKey.bytes()
+    return this._rawIdentityPublicKey .bytes()
   }
 
   hex(): string {
-    return this.#rawIdentityPublicKey.hex()
+    return this._rawIdentityPublicKey .hex()
   }
 
   base64(): string {
-    return this.#rawIdentityPublicKey.base64()
+    return this._rawIdentityPublicKey .base64()
   }
 
   static fromBytes(bytes: Uint8Array): IdentityPublicKeyWASM {
@@ -148,12 +148,12 @@ export class IdentityPublicKeyWASM {
 
   static createFromRawInstance(rawInstance: RawIdentityPublicKey) {
     const instance:IdentityPublicKeyWASM = Object.create(this.prototype)
-    instance.#rawIdentityPublicKey = rawInstance
+    instance._rawIdentityPublicKey  = rawInstance
 
     return instance
   }
 
   getRawInstance(): RawIdentityPublicKey {
-    return this.#rawIdentityPublicKey
+    return this._rawIdentityPublicKey 
   }
 }

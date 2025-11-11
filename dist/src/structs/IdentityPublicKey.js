@@ -8,88 +8,88 @@ function setDpp(_dpp) {
     dpp = _dpp;
 }
 class IdentityPublicKeyWASM {
-    #rawIdentityPublicKey;
+    _rawIdentityPublicKey;
     constructor(id, purpose, securityLevel, keyType, readOnly, binaryData, disabledAt) {
-        this.#rawIdentityPublicKey = new dpp.IdentityPublicKeyWASM(id, (0, helpers_1.valueToDynamicEnum)(purpose), (0, helpers_1.valueToDynamicEnum)(securityLevel), (0, helpers_1.valueToDynamicEnum)(keyType), readOnly, binaryData, disabledAt ? { value: disabledAt.toString() } : undefined);
+        this._rawIdentityPublicKey = new dpp.IdentityPublicKeyWASM(id, (0, helpers_1.valueToDynamicEnum)(purpose), (0, helpers_1.valueToDynamicEnum)(securityLevel), (0, helpers_1.valueToDynamicEnum)(keyType), readOnly, binaryData, disabledAt ? { value: disabledAt.toString() } : undefined);
     }
     get keyId() {
-        return this.#rawIdentityPublicKey.keyId;
+        return this._rawIdentityPublicKey.keyId;
     }
     get purpose() {
-        return this.#rawIdentityPublicKey.purpose;
+        return this._rawIdentityPublicKey.purpose;
     }
     get purposeNumber() {
-        return this.#rawIdentityPublicKey.purposeNumber;
+        return this._rawIdentityPublicKey.purposeNumber;
     }
     get securityLevel() {
-        return this.#rawIdentityPublicKey.securityLevel;
+        return this._rawIdentityPublicKey.securityLevel;
     }
     get securityLevelNumber() {
-        return this.#rawIdentityPublicKey.securityLevelNumber;
+        return this._rawIdentityPublicKey.securityLevelNumber;
     }
     get keyType() {
-        return this.#rawIdentityPublicKey.keyType;
+        return this._rawIdentityPublicKey.keyType;
     }
     get keyTypeNumber() {
-        return this.#rawIdentityPublicKey.keyTypeNumber;
+        return this._rawIdentityPublicKey.keyTypeNumber;
     }
     get readOnly() {
-        return this.#rawIdentityPublicKey.readOnly;
+        return this._rawIdentityPublicKey.readOnly;
     }
     get data() {
-        return this.#rawIdentityPublicKey.data;
+        return this._rawIdentityPublicKey.data;
     }
     get disabledAt() {
-        const timestamp = this.#rawIdentityPublicKey.disabledAt;
+        const timestamp = this._rawIdentityPublicKey.disabledAt;
         return timestamp ? BigInt(timestamp.value) : undefined;
     }
     set keyId(keyId) {
-        this.#rawIdentityPublicKey.keyId = keyId;
+        this._rawIdentityPublicKey.keyId = keyId;
     }
     set purpose(purpose) {
-        this.#rawIdentityPublicKey.purpose = (0, helpers_1.valueToDynamicEnum)(purpose);
+        this._rawIdentityPublicKey.purpose = (0, helpers_1.valueToDynamicEnum)(purpose);
     }
     set purposeNumber(purpose) {
-        this.#rawIdentityPublicKey.purposeNumber = (0, helpers_1.valueToDynamicEnum)(purpose);
+        this._rawIdentityPublicKey.purposeNumber = (0, helpers_1.valueToDynamicEnum)(purpose);
     }
     set securityLevel(securityLevel) {
-        this.#rawIdentityPublicKey.securityLevel = (0, helpers_1.valueToDynamicEnum)(securityLevel);
+        this._rawIdentityPublicKey.securityLevel = (0, helpers_1.valueToDynamicEnum)(securityLevel);
     }
     set securityLevelNumber(securityLevel) {
-        this.#rawIdentityPublicKey.securityLevelNumber = (0, helpers_1.valueToDynamicEnum)(securityLevel);
+        this._rawIdentityPublicKey.securityLevelNumber = (0, helpers_1.valueToDynamicEnum)(securityLevel);
     }
     set keyType(keyType) {
-        this.#rawIdentityPublicKey.keyType = (0, helpers_1.valueToDynamicEnum)(keyType);
+        this._rawIdentityPublicKey.keyType = (0, helpers_1.valueToDynamicEnum)(keyType);
     }
     set keyTypeNumber(keyType) {
-        this.#rawIdentityPublicKey.keyTypeNumber = (0, helpers_1.valueToDynamicEnum)(keyType);
+        this._rawIdentityPublicKey.keyTypeNumber = (0, helpers_1.valueToDynamicEnum)(keyType);
     }
     set readOnly(readOnly) {
-        this.#rawIdentityPublicKey.readOnly = readOnly;
+        this._rawIdentityPublicKey.readOnly = readOnly;
     }
     set data(binaryData) {
-        this.#rawIdentityPublicKey.data = binaryData;
+        this._rawIdentityPublicKey.data = binaryData;
     }
     set disabledAt(disabledAt) {
-        this.#rawIdentityPublicKey.disabledAt = { value: disabledAt };
+        this._rawIdentityPublicKey.disabledAt = { value: disabledAt };
     }
     removeDisabledAt() {
-        this.#rawIdentityPublicKey.removeDisabledAt();
+        this._rawIdentityPublicKey.removeDisabledAt();
     }
     getPublicKeyHash() {
-        return this.#rawIdentityPublicKey.getPublicKeyHash();
+        return this._rawIdentityPublicKey.getPublicKeyHash();
     }
     isMaster() {
-        return this.#rawIdentityPublicKey.isMaster();
+        return this._rawIdentityPublicKey.isMaster();
     }
     bytes() {
-        return this.#rawIdentityPublicKey.bytes();
+        return this._rawIdentityPublicKey.bytes();
     }
     hex() {
-        return this.#rawIdentityPublicKey.hex();
+        return this._rawIdentityPublicKey.hex();
     }
     base64() {
-        return this.#rawIdentityPublicKey.base64();
+        return this._rawIdentityPublicKey.base64();
     }
     static fromBytes(bytes) {
         const rawInstance = dpp.IdentityPublicKeyWASM.fromBytes(bytes);
@@ -105,11 +105,11 @@ class IdentityPublicKeyWASM {
     }
     static createFromRawInstance(rawInstance) {
         const instance = Object.create(this.prototype);
-        instance.#rawIdentityPublicKey = rawInstance;
+        instance._rawIdentityPublicKey = rawInstance;
         return instance;
     }
     getRawInstance() {
-        return this.#rawIdentityPublicKey;
+        return this._rawIdentityPublicKey;
     }
 }
 exports.IdentityPublicKeyWASM = IdentityPublicKeyWASM;
