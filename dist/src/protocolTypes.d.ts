@@ -1,0 +1,131 @@
+export declare class IdentifierWASM {
+    constructor(jsId: DynamicValue);
+    base58(): string;
+    hex(): string;
+    base64(): string;
+    bytes(): Uint8Array;
+}
+export declare class IdentityPublicKeyWASM {
+    constructor(id: number, jsPurpose: DynamicValue, jsSecurityLevel: DynamicValue, jsKeyType: DynamicValue, readOnly: boolean, binaryData: string, jsDisabledAt?: Uint64String | undefined | null);
+    validatePrivateKey(jsPrivateKeyBytes: Uint8Array, jsNetwork: DynamicValue): boolean;
+    get keyId(): number;
+    get purpose(): string;
+    get purposeNumber(): Purpose;
+    get securityLevel(): string;
+    get securityLevelNumber(): SecurityLevel;
+    get keyType(): string;
+    get keyTypeNumber(): KeyType;
+    get readOnly(): boolean;
+    get data(): string;
+    get disabledAt(): Uint64String | null;
+    set keyId(keyId: number);
+    set purpose(purpose: DynamicValue);
+    set purposeNumber(purpose: DynamicValue);
+    set securityLevel(securityLevel: DynamicValue);
+    set securityLevelNumber(securityLevel: DynamicValue);
+    set keyType(keyType: DynamicValue);
+    set keyTypeNumber(keyType: DynamicValue);
+    set readOnly(readOnly: boolean);
+    set data(binaryData: string);
+    set disabledAt(disabledAt: Uint64String);
+    removeDisabledAt(): void;
+    getPublicKeyHash(): string;
+    isMaster(): boolean;
+    bytes(): Uint8Array;
+    hex(): string;
+    base64(): string;
+    static fromBytes(bytes: Uint8Array): IdentityPublicKeyWASM;
+    static fromHex(hex: string): IdentityPublicKeyWASM;
+    static fromBase64(base64: string): IdentityPublicKeyWASM;
+}
+export declare class IdentityWASM {
+    constructor(id: IdentifierWASM, jsPlatformVersion: DynamicValue);
+    set id(id: IdentifierWASM);
+    set balance(balance: Uint64String);
+    set revision(revision: Uint64String);
+    get id(): IdentifierWASM;
+    get balance(): Uint64String;
+    get revision(): Uint64String;
+    addPublicKey(publicKey: IdentityPublicKeyWASM): void;
+    getPublicKeyById(keyId: number): IdentityPublicKeyWASM | null;
+    getPublicKeys(): Array<IdentityPublicKeyWASM>;
+    static fromHex(hex: string): IdentityWASM;
+    static fromBase64(base64: string): IdentityWASM;
+    static fromBytes(bytes: Uint8Array): IdentityWASM;
+    bytes(): Uint8Array;
+    hex(): string;
+    base64(): string;
+}
+export type DynamicValue = {
+    type: 'Text';
+    field0: string;
+} | {
+    type: 'Bytes';
+    field0: Uint8Array;
+} | {
+    type: 'Uint8';
+    field0: number;
+} | {
+    type: 'Uint16';
+    field0: number;
+} | {
+    type: 'Uint32';
+    field0: number;
+} | {
+    type: 'Uint64';
+    field0: Uint64String;
+} | {
+    type: 'Bool';
+    field0: boolean;
+} | {
+    type: 'Null';
+    field0: null;
+} | {
+    type: 'Object';
+    field0: Array<[DynamicValue, DynamicValue]>;
+} | {
+    type: 'Array';
+    field0: Array<DynamicValue>;
+};
+export declare const enum KeyType {
+    ECDSA_SECP256K1 = 0,
+    BLS12_381 = 1,
+    ECDSA_HASH160 = 2,
+    BIP13_SCRIPT_HASH = 3,
+    EDDSA_25519_HASH160 = 4
+}
+export declare const enum NetworkWASM {
+    Mainnet = 0,
+    Testnet = 1,
+    Devnet = 2,
+    Regtest = 3
+}
+export declare const enum PlatformVersionWASM {
+    PLATFORM_V1 = 1,
+    PLATFORM_V2 = 2,
+    PLATFORM_V3 = 3,
+    PLATFORM_V4 = 4,
+    PLATFORM_V5 = 5,
+    PLATFORM_V6 = 6,
+    PLATFORM_V7 = 7,
+    PLATFORM_V8 = 8,
+    PLATFORM_V9 = 9
+}
+export declare const enum Purpose {
+    AUTHENTICATION = 0,
+    ENCRYPTION = 1,
+    DECRYPTION = 2,
+    TRANSFER = 3,
+    SYSTEM = 4,
+    VOTING = 5,
+    OWNER = 6
+}
+export declare const enum SecurityLevel {
+    MASTER = 0,
+    CRITICAL = 1,
+    HIGH = 2,
+    MEDIUM = 3
+}
+export interface Uint64String {
+    value: string;
+}

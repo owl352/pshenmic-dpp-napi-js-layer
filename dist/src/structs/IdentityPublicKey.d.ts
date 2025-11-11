@@ -1,0 +1,35 @@
+import { DashPlatformProtocol, EnumLike, Purpose, RawIdentityPublicKey, SecurityLevel, KeyType } from "../types";
+export declare function setDpp(_dpp: DashPlatformProtocol): void;
+export declare class IdentityPublicKeyWASM {
+    rawIdentityPublicKey: RawIdentityPublicKey;
+    constructor(id: number, purpose: EnumLike, securityLevel: EnumLike, keyType: EnumLike, readOnly: boolean, binaryData: string, disabledAt?: bigint);
+    get keyId(): number;
+    get purpose(): string;
+    get purposeNumber(): Purpose;
+    get securityLevel(): string;
+    get securityLevelNumber(): SecurityLevel;
+    get keyType(): string;
+    get keyTypeNumber(): KeyType;
+    get readOnly(): boolean;
+    get data(): string;
+    get disabledAt(): BigInt | undefined;
+    set keyId(keyId: number);
+    set purpose(purpose: EnumLike);
+    set purposeNumber(purpose: EnumLike);
+    set securityLevel(securityLevel: EnumLike);
+    set securityLevelNumber(securityLevel: EnumLike);
+    set keyType(keyType: EnumLike);
+    set keyTypeNumber(keyType: EnumLike);
+    set readOnly(readOnly: boolean);
+    set data(binaryData: string);
+    set disabledAt(disabledAt: string);
+    removeDisabledAt(): void;
+    getPublicKeyHash(): string;
+    isMaster(): boolean;
+    bytes(): Uint8Array;
+    hex(): string;
+    base64(): string;
+    static fromBytes(bytes: Uint8Array): IdentityPublicKeyWASM;
+    static fromHex(hex: string): IdentityPublicKeyWASM;
+    static fromBase64(base64: string): IdentityPublicKeyWASM;
+}
