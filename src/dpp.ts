@@ -1,22 +1,24 @@
-import {DashPlatformProtocol, KeyType, NetworkWASM, PlatformVersionWASM, Purpose, SecurityLevel} from "./types";
+import {DashPlatformProtocol} from "./types";
 import * as Identifier from "./structs/Identifier";
 import * as Identity from "./structs/Identity";
 import * as IdentityPublicKey from "./structs/IdentityPublicKey";
+
+export type { IdentityWASM } from './structs/Identity';
+export type { IdentifierWASM } from './structs/Identifier';
+export type { IdentityPublicKeyWASM } from './structs/IdentityPublicKey';
+
+
+type IdentifierConstructor = typeof Identifier.IdentifierWASM;
+type IdentityConstructor = typeof Identity.IdentityWASM;
+type IdentityPublicKeyConstructor = typeof IdentityPublicKey.IdentityPublicKeyWASM;
 
 export class DPP {
   rawDpp: DashPlatformProtocol;
 
   //structs
-  IdentifierWASM: typeof Identifier.IdentifierWASM;
-  IdentityWASM: typeof Identity.IdentityWASM;
-  IdentityPublicKeyWASM: typeof IdentityPublicKey.IdentityPublicKeyWASM;
-
-  //enums
-  KeyType: KeyType
-  NetworkWASM: NetworkWASM
-  PlatformVersionWASM: PlatformVersionWASM
-  Purpose: Purpose
-  SecurityLevel: SecurityLevel
+  static IdentifierWASM = Identifier.IdentifierWASM;
+  static IdentityWASM = Identity.IdentityWASM;
+  static IdentityPublicKeyWASM = IdentityPublicKey.IdentityPublicKeyWASM;
 
   constructor(dpp: DashPlatformProtocol) {
     this.rawDpp = dpp
@@ -24,9 +26,5 @@ export class DPP {
     Identifier.setDpp(dpp);
     Identity.setDpp(dpp);
     IdentityPublicKey.setDpp(dpp);
-
-    this.IdentifierWASM = Identifier.IdentifierWASM;
-    this.IdentityWASM = Identity.IdentityWASM;
-    this.IdentityPublicKeyWASM = IdentityPublicKey.IdentityPublicKeyWASM;
   }
 }
