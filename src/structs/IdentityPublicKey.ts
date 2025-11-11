@@ -1,6 +1,5 @@
-import {DashPlatformProtocol, EnumLike, RawIdentityPublicKey} from "../types";
+import {DashPlatformProtocol, EnumLike, Purpose, RawIdentityPublicKey, SecurityLevel, KeyType} from "../types";
 import {valueToDynamicEnum} from "../helpers";
-import {DynamicValue, KeyType, PurposeWASM, SecurityLevelWASM, Uint64String} from "pshenmic-dpp-napi";
 
 let dpp: DashPlatformProtocol;
 
@@ -31,7 +30,7 @@ export class IdentityPublicKeyWASM {
     return this.rawIdentityPublicKey.purpose
   }
 
-  get purposeNumber(): PurposeWASM {
+  get purposeNumber(): Purpose {
     return this.rawIdentityPublicKey.purposeNumber
   }
 
@@ -39,7 +38,7 @@ export class IdentityPublicKeyWASM {
     return this.rawIdentityPublicKey.securityLevel
   }
 
-  get securityLevelNumber(): SecurityLevelWASM {
+  get securityLevelNumber(): SecurityLevel {
     return this.rawIdentityPublicKey.securityLevelNumber
   }
 

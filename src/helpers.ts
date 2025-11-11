@@ -14,8 +14,10 @@ export function valueToDynamicEnum (value: EnumLike): DynamicValue {
       numType = 'Uint8'
     }else if(value<=UINT16MAX) {
       numType = 'Uint16'
-    }else {
+    }else if(value<=UINT32MAX) {
       numType = 'Uint32'
+    }else {
+      throw new Error(`out of range ${value}`)
     }
 
     return {

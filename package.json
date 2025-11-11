@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "exports": {
+    ".": "./pkg/index.js",
+    "./react-native": "./pkg/react-native"
+  },
   "dependencies": {
     "pshenmic-dpp-napi": "github:owl352/pshenmic-dpp-napi#e8955926dca7c443320ab1fd4954610da38da379",
     "tsx": "^4.20.6",

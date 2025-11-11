@@ -12,6 +12,7 @@
   },
   "include": [
     "./index.ts",
+    "./react-native.ts",
     "./src/**/*",
     "./test/**/*"
   ]
