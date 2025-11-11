@@ -7,11 +7,6 @@ export type { IdentityWASM } from './structs/Identity';
 export type { IdentifierWASM } from './structs/Identifier';
 export type { IdentityPublicKeyWASM } from './structs/IdentityPublicKey';
 
-
-type IdentifierConstructor = typeof Identifier.IdentifierWASM;
-type IdentityConstructor = typeof Identity.IdentityWASM;
-type IdentityPublicKeyConstructor = typeof IdentityPublicKey.IdentityPublicKeyWASM;
-
 export class DPP {
   rawDpp: DashPlatformProtocol;
 
